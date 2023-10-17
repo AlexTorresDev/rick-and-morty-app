@@ -2,6 +2,7 @@
 
 Aplicativo móvil desarrollado en Flutter para la prueba técnica de Double V Partners.
 
+![502shots_so](https://github.com/AlexTorresDev/rick-and-morty-app/assets/45916349/8e9a84b6-3ac7-4266-9bc2-d607f476a4c7)
 
 ## Librerías utilizadas
 
