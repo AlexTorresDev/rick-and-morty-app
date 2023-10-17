@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:rick_and_morty_app/src/ui/pages/episode/widgets/episode_card.dart';
+import 'package:rick_and_morty_app/src/ui/pages/episode/widgets/episode_item.dart';
 import 'package:rick_and_morty_app/src/ui/providers/search/search_episodes_provider.dart';
 
 class EpisodeList extends ConsumerWidget {
@@ -27,16 +27,12 @@ class EpisodeList extends ConsumerWidget {
             : Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.73,
-                      crossAxisSpacing: 4.0
-                    ),
+                  child: ListView.separated(
                     itemCount: searchProv.apiResult.results.length,
-                    itemBuilder: (context, index) => EpisodeCard(
+                    itemBuilder: (context, index) => EpisodeItem(
                       episode: searchProv.apiResult.results[index],
                     ),
+                    separatorBuilder: (context, index) => const Divider(),
                   ),
                 ),
               );
