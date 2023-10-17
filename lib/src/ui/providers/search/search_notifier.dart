@@ -1,38 +1,37 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rick_and_morty_app/src/domain/models/api-result/api_result_model.dart';
-import 'package:rick_and_morty_app/src/domain/models/character/character_model.dart';
 
 import 'package:rick_and_morty_app/src/ui/providers/search/search_event.dart';
 import 'package:rick_and_morty_app/src/ui/providers/search/search_state.dart';
 
-class SearchNotifier extends StateNotifier<SearchState> {
+class SearchNotifier<T> extends StateNotifier<SearchState<T>> {
   SearchNotifier() : super(SearchState.loading());
 
-  void mapEventsToState(SearchEvent event) {
+  void mapEventsToState(SearchEvent<T> event) {
     event.map(
       searchedTextChanged: (searchedTextChangedEvent) {
-        final characterList = [...state.apiCharacter.results];
-        final searchedcharacterList = characterList
-            .where((charaterModel) => charaterModel.name.toLowerCase().contains(
+        final list = [...state.apiResult.results];
+        final searchedList = list
+            .where((model) => (model as dynamic).name.toLowerCase().contains(
                 searchedTextChangedEvent.text.toLowerCase().trimLeft()))
             .toList();
 
-        final result = ApiResultModel<CharacterModel>(
-          info: state.apiCharacter.info,
-          results: searchedcharacterList,
+        final result = ApiResultModel<T>(
+          info: state.apiResult.info,
+          results: searchedList,
         );
 
-        state = state.copyWith(apiCharacter: result);
+        state = state.copyWith(apiResult: result);
       },
       updateListItems: (updateListItemsEvent) {
         state = state.copyWith(
-          apiCharacter: updateListItemsEvent.characterModelList,
+          apiResult: updateListItemsEvent.modelList,
           isLoading: false,
         );
       },
       loading: (_) {
         state = state.copyWith(
-          apiCharacter: ApiResultModel.empty(),
+          apiResult: ApiResultModel.empty(),
           isLoading: true,
         );
       },

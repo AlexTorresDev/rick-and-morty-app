@@ -1,14 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rick_and_morty_app/src/domain/models/api-result/api_result_model.dart';
-import 'package:rick_and_morty_app/src/domain/models/character/character_model.dart';
 
 part 'search_event.freezed.dart';
 
-@freezed
-class SearchEvent with _$SearchEvent {
+@Freezed(genericArgumentFactories: true)
+class SearchEvent<T> with _$SearchEvent<T> {
   const factory SearchEvent.searchedTextChanged({required String text}) =
-      SearchedTextChanged;
+      SearchedTextChanged<T>;
   const factory SearchEvent.updateListItems(
-      {required ApiResultModel<CharacterModel> characterModelList}) = UpdateListItems;
-  const factory SearchEvent.loading() = Loading;
+      {required ApiResultModel<T> modelList}) = UpdateListItems<T>;
+  const factory SearchEvent.loading() = Loading<T>;
 }

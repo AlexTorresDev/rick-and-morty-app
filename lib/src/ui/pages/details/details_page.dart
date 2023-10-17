@@ -14,20 +14,20 @@ class DetailsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final catProvider = ref.watch(characterDetailsProvider(int.parse(id)));
+    final characterProvider = ref.watch(characterDetailsProvider(int.parse(id)));
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: catProvider.when(
+        title: characterProvider.when(
           skipError: true,
-          data: (cat) => Text(cat.name),
+          data: (character) => Text(character.name),
           loading: () => const SizedBox(),
           error: (_, __) => const SizedBox(),
         ),
       ),
-      body: catProvider.when(
-        data: (cat) => CatDetails(character: cat),
+      body: characterProvider.when(
+        data: (character) => CharacterDetails(character: character),
         error: (_, stacktrace) => Center(
           child: Text(stacktrace.toString()),
         ),

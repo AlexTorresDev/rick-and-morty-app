@@ -1,15 +1,8 @@
-import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rick_and_morty_app/src/domain/models/character/location_model.dart';
 
 part 'character_model.freezed.dart';
 part 'character_model.g.dart';
-
-List<CharacterModel> catFromJson(String str) => List<CharacterModel>.from(
-    json.decode(str).map((x) => CharacterModel.fromJson(x)));
-
-String catToJson(List<CharacterModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 @freezed
 class CharacterModel with _$CharacterModel {

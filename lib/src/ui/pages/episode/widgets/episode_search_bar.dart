@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:rick_and_morty_app/src/ui/providers/search/search_event.dart';
-import 'package:rick_and_morty_app/src/ui/providers/search/search_provider.dart';
+import 'package:rick_and_morty_app/src/ui/providers/search/search_episodes_provider.dart';
 
-class CustomSearchBar extends StatelessWidget {
-  CustomSearchBar({super.key});
+class EpisodeSearchBar extends StatelessWidget {
+  EpisodeSearchBar({super.key});
 
   final _textfieldController = TextEditingController();
 
@@ -30,9 +30,9 @@ class CustomSearchBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            margin: const EdgeInsets.only(left: 25),
-            width: 70,
-            height: 20,
+            padding: const EdgeInsets.only(left: 15),
+            width: MediaQuery.of(context).size.width - 140,
+            height: 50,
             child: Center(
               child: TextField(
                 controller: _textfieldController,
@@ -49,8 +49,8 @@ class CustomSearchBar extends StatelessWidget {
                   return IconButton(
                     onPressed: () {
                       if (_textfieldController.text.isNotEmpty) {
-                        ref.invalidate(searchProvider);
-                        ref.read(searchProvider.notifier).mapEventsToState(
+                        ref.invalidate(searchEpisodesProvider);
+                        ref.read(searchEpisodesProvider.notifier).mapEventsToState(
                               SearchedTextChanged(
                                 text: _textfieldController.text,
                               ),
@@ -69,8 +69,8 @@ class CustomSearchBar extends StatelessWidget {
                     onPressed: () {
                       if (_textfieldController.text.isNotEmpty) {
                         _textfieldController.clear();
-                        ref.invalidate(searchProvider);
-                        ref.read(searchProvider.notifier);
+                        ref.invalidate(searchEpisodesProvider);
+                        ref.read(searchEpisodesProvider.notifier);
                       }
                     },
                     icon: const Icon(

@@ -15,30 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchState {
-  ApiResultModel<CharacterModel> get apiCharacter =>
-      throw _privateConstructorUsedError;
+mixin _$SearchState<T> {
+  ApiResultModel<T> get apiResult => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SearchStateCopyWith<SearchState> get copyWith =>
+  $SearchStateCopyWith<T, SearchState<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SearchStateCopyWith<$Res> {
+abstract class $SearchStateCopyWith<T, $Res> {
   factory $SearchStateCopyWith(
-          SearchState value, $Res Function(SearchState) then) =
-      _$SearchStateCopyWithImpl<$Res, SearchState>;
+          SearchState<T> value, $Res Function(SearchState<T>) then) =
+      _$SearchStateCopyWithImpl<T, $Res, SearchState<T>>;
   @useResult
-  $Res call({ApiResultModel<CharacterModel> apiCharacter, bool isLoading});
+  $Res call({ApiResultModel<T> apiResult, bool isLoading});
 
-  $ApiResultModelCopyWith<CharacterModel, $Res> get apiCharacter;
+  $ApiResultModelCopyWith<T, $Res> get apiResult;
 }
 
 /// @nodoc
-class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
-    implements $SearchStateCopyWith<$Res> {
+class _$SearchStateCopyWithImpl<T, $Res, $Val extends SearchState<T>>
+    implements $SearchStateCopyWith<T, $Res> {
   _$SearchStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -49,14 +48,14 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiCharacter = null,
+    Object? apiResult = null,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
-      apiCharacter: null == apiCharacter
-          ? _value.apiCharacter
-          : apiCharacter // ignore: cast_nullable_to_non_nullable
-              as ApiResultModel<CharacterModel>,
+      apiResult: null == apiResult
+          ? _value.apiResult
+          : apiResult // ignore: cast_nullable_to_non_nullable
+              as ApiResultModel<T>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -66,47 +65,46 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
 
   @override
   @pragma('vm:prefer-inline')
-  $ApiResultModelCopyWith<CharacterModel, $Res> get apiCharacter {
-    return $ApiResultModelCopyWith<CharacterModel, $Res>(_value.apiCharacter,
-        (value) {
-      return _then(_value.copyWith(apiCharacter: value) as $Val);
+  $ApiResultModelCopyWith<T, $Res> get apiResult {
+    return $ApiResultModelCopyWith<T, $Res>(_value.apiResult, (value) {
+      return _then(_value.copyWith(apiResult: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$SearchStateImplCopyWith<$Res>
-    implements $SearchStateCopyWith<$Res> {
-  factory _$$SearchStateImplCopyWith(
-          _$SearchStateImpl value, $Res Function(_$SearchStateImpl) then) =
-      __$$SearchStateImplCopyWithImpl<$Res>;
+abstract class _$$SearchStateImplCopyWith<T, $Res>
+    implements $SearchStateCopyWith<T, $Res> {
+  factory _$$SearchStateImplCopyWith(_$SearchStateImpl<T> value,
+          $Res Function(_$SearchStateImpl<T>) then) =
+      __$$SearchStateImplCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({ApiResultModel<CharacterModel> apiCharacter, bool isLoading});
+  $Res call({ApiResultModel<T> apiResult, bool isLoading});
 
   @override
-  $ApiResultModelCopyWith<CharacterModel, $Res> get apiCharacter;
+  $ApiResultModelCopyWith<T, $Res> get apiResult;
 }
 
 /// @nodoc
-class __$$SearchStateImplCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$SearchStateImpl>
-    implements _$$SearchStateImplCopyWith<$Res> {
+class __$$SearchStateImplCopyWithImpl<T, $Res>
+    extends _$SearchStateCopyWithImpl<T, $Res, _$SearchStateImpl<T>>
+    implements _$$SearchStateImplCopyWith<T, $Res> {
   __$$SearchStateImplCopyWithImpl(
-      _$SearchStateImpl _value, $Res Function(_$SearchStateImpl) _then)
+      _$SearchStateImpl<T> _value, $Res Function(_$SearchStateImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiCharacter = null,
+    Object? apiResult = null,
     Object? isLoading = null,
   }) {
-    return _then(_$SearchStateImpl(
-      apiCharacter: null == apiCharacter
-          ? _value.apiCharacter
-          : apiCharacter // ignore: cast_nullable_to_non_nullable
-              as ApiResultModel<CharacterModel>,
+    return _then(_$SearchStateImpl<T>(
+      apiResult: null == apiResult
+          ? _value.apiResult
+          : apiResult // ignore: cast_nullable_to_non_nullable
+              as ApiResultModel<T>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -117,53 +115,54 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchStateImpl extends _SearchState {
-  _$SearchStateImpl({required this.apiCharacter, required this.isLoading})
+class _$SearchStateImpl<T> extends _SearchState<T> {
+  _$SearchStateImpl({required this.apiResult, required this.isLoading})
       : super._();
 
   @override
-  final ApiResultModel<CharacterModel> apiCharacter;
+  final ApiResultModel<T> apiResult;
   @override
   final bool isLoading;
 
   @override
   String toString() {
-    return 'SearchState(apiCharacter: $apiCharacter, isLoading: $isLoading)';
+    return 'SearchState<$T>(apiResult: $apiResult, isLoading: $isLoading)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchStateImpl &&
-            (identical(other.apiCharacter, apiCharacter) ||
-                other.apiCharacter == apiCharacter) &&
+            other is _$SearchStateImpl<T> &&
+            (identical(other.apiResult, apiResult) ||
+                other.apiResult == apiResult) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, apiCharacter, isLoading);
+  int get hashCode => Object.hash(runtimeType, apiResult, isLoading);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>
-      __$$SearchStateImplCopyWithImpl<_$SearchStateImpl>(this, _$identity);
+  _$$SearchStateImplCopyWith<T, _$SearchStateImpl<T>> get copyWith =>
+      __$$SearchStateImplCopyWithImpl<T, _$SearchStateImpl<T>>(
+          this, _$identity);
 }
 
-abstract class _SearchState extends SearchState {
+abstract class _SearchState<T> extends SearchState<T> {
   factory _SearchState(
-      {required final ApiResultModel<CharacterModel> apiCharacter,
-      required final bool isLoading}) = _$SearchStateImpl;
+      {required final ApiResultModel<T> apiResult,
+      required final bool isLoading}) = _$SearchStateImpl<T>;
   _SearchState._() : super._();
 
   @override
-  ApiResultModel<CharacterModel> get apiCharacter;
+  ApiResultModel<T> get apiResult;
   @override
   bool get isLoading;
   @override
   @JsonKey(ignore: true)
-  _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>
+  _$$SearchStateImplCopyWith<T, _$SearchStateImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
