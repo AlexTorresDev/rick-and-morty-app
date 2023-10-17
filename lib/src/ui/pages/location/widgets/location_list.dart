@@ -12,29 +12,39 @@ class LocationList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final searchProv = ref.watch(searchLocationsProvider);
 
-    return searchProv.isLoading
-        ? const Expanded(
-            child: Center(
+    if (searchProv.isLoading) {
+      return SliverList(
+        delegate: SliverChildListDelegate(
+          [
+            const Center(
               child: CircularProgressIndicator(),
             ),
-          )
-        : searchProv.apiResult.results.isEmpty
-            ? Expanded(
-                child: Center(
-                  child: Text(AppLocalizations.of(context)!.error_notFound),
-                ),
-              )
-            : Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: ListView.separated(
-                    itemCount: searchProv.apiResult.results.length,
-                    itemBuilder: (context, index) => LocationItem(
-                      location: searchProv.apiResult.results[index],
-                    ),
-                    separatorBuilder: (context, index) => const Divider(),
-                  ),
-                ),
-              );
+          ],
+        ),
+      );
+    }
+
+    if (searchProv.apiResult.results.isEmpty) {
+      return SliverList(
+        delegate: SliverChildListDelegate(
+          [
+            Center(
+              child: Text(AppLocalizations.of(context)!.error_notFound),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      sliver: SliverList.separated(
+        itemCount: searchProv.apiResult.results.length,
+        itemBuilder: (context, index) => LocationItem(
+          location: searchProv.apiResult.results[index],
+        ),
+        separatorBuilder: (context, index) => const Divider(),
+      ),
+    );
   }
 }

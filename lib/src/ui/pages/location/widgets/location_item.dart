@@ -13,7 +13,7 @@ class LocationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push('/details/${location.id}'),
+      onTap: () => context.push('/location/${location.id}'),
       child: ListTile(
         leading: const Icon(Icons.location_on),
         title: Text(

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeCard extends StatelessWidget {
-  const HomeCard({
+class HomeItem extends StatelessWidget {
+  const HomeItem({
     super.key,
+    required this.icon,
     required this.image,
     required this.title,
     required this.route,
   });
 
+  final IconData icon;
   final String image;
   final String title;
   final String route;
@@ -42,11 +44,20 @@ class HomeCard extends StatelessWidget {
                     Radius.circular(8.0),
                   ),
                 ),
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Colors.white,
-                      ),
+                child: Row(
+                  children: [
+                    Icon(
+                      icon,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(width: 8.0),
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Colors.white,
+                          ),
+                    ),
+                  ],
                 ),
               ),
             ),

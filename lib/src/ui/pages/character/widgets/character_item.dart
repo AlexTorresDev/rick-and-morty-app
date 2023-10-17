@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:rick_and_morty_app/src/domain/models/character/character_model.dart';
+import 'package:rick_and_morty_app/src/ui/commons/colors.dart';
 
-class CharacterCard extends StatelessWidget {
-  const CharacterCard({
+class CharacterItem extends StatelessWidget {
+  const CharacterItem({
     super.key,
     required this.character,
   });
@@ -14,18 +15,21 @@ class CharacterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color? color = character.status == 'Alive'
-            ? Colors.greenAccent
-            : character.status == 'Dead'
-                ? Colors.redAccent
-                : Colors.grey;
+        ? kGreen
+        : character.status == 'Dead'
+            ? kRed
+            : Colors.grey;
 
     return GestureDetector(
-      onTap: () => context.push('/details/${character.id}'),
+      onTap: () => context.push('/character/${character.id}'),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
+          side: BorderSide(
+            color: color.withAlpha(80),
+            width: 2.0,
+          ),
         ),
-        color: color.withAlpha(120),
         child: Column(
           children: [
             ClipRRect(
@@ -76,6 +80,7 @@ class CharacterCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -84,18 +89,31 @@ class CharacterCard extends StatelessWidget {
                         .textTheme
                         .titleLarge
                         ?.copyWith(fontWeight: FontWeight.w700),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    character.status == 'Alive'
-                        ? AppLocalizations.of(context)!.card_statusAlive
-                        : character.status == 'Dead'
-                            ? AppLocalizations.of(context)!.card_statusDead
-                            : AppLocalizations.of(context)!.card_statusUnknown,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      Container(
+                        width: 10.0,
+                        height: 10.0,
+                        decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      const SizedBox(width: 5.0),
+                      Text(
+                        character.status == 'Alive'
+                            ? AppLocalizations.of(context)!.card_statusAlive
+                            : character.status == 'Dead'
+                                ? AppLocalizations.of(context)!.card_statusDead
+                                : AppLocalizations.of(context)!
+                                    .card_statusUnknown,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -13,7 +13,7 @@ class EpisodeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push('/details/${episode.id}'),
+      onTap: () => context.push('/episode/${episode.id}'),
       child: ListTile(
         leading: const Icon(Icons.movie),
         title: Text(

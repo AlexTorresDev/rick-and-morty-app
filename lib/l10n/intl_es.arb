@@ -15,5 +15,9 @@
   "card_origin": "Origen",
   "home_characters": "Personajes",
   "home_locations": "Ubicaciones",
-  "home_episodes": "Episodios"
+  "home_episodes": "Episodios",
+  "location_type": "Tipo de ubicación",
+  "location_dimension": "Dimensión",
+  "episode_number": "Número de episodio",
+  "episode_date": "Fecha de lanzamiento"
 }
